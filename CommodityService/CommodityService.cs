@@ -23,20 +23,20 @@ namespace CommodityService
 
         private IEnumerable<int> GroupValueSumsWithValidArguments(int amountPerGroup, string dataName)
         {
-            var fieldInfo = typeof(Commodity).GetField(dataName);
+            var propertyInfo = typeof(Commodity).GetProperty(dataName);
             var result = new List<int>();
             for (var startIndex = 0; startIndex < _Commodities.Count; startIndex += amountPerGroup)
-                result.Add(GetGroupValueSum(amountPerGroup, fieldInfo, startIndex));
+                result.Add(GetGroupValueSum(amountPerGroup, propertyInfo, startIndex));
 
             return result;
         }
 
-        private int GetGroupValueSum(int amountPerGroup, FieldInfo fieldInfo, int startIndex)
+        private int GetGroupValueSum(int amountPerGroup, PropertyInfo propertyInfo, int startIndex)
         {
             var sum = 0;
             var commodityAmount = Math.Min(amountPerGroup, _Commodities.Count - startIndex);
             for (var i = 0; i < commodityAmount; i++)
-                sum += (int) fieldInfo.GetValue(_Commodities[startIndex + i]);
+                sum += (int) propertyInfo.GetValue(_Commodities[startIndex + i]);
             return sum;
         }
 
@@ -45,8 +45,8 @@ namespace CommodityService
             if (dataName == null)
                 throw new ArgumentException("Invalid dataName, dataName cannot be null.");
 
-            var fieldInfo = typeof(Commodity).GetField(dataName);
-            if (fieldInfo == null)
+            var propertyInfo = typeof(Commodity).GetProperty(dataName);
+            if (propertyInfo == null)
                 throw new ArgumentException(string.Format("Invalid dataName, cannot find specified dataName '{0}'.", dataName));
             if (amountPerGroup <= 0)
                 throw new ArgumentException("Invalid amountPerGroup, it must be a positive integer.");
