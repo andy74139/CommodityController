@@ -33,7 +33,6 @@ namespace CommodityService.Tests
         [TestCase(1,  "Cost", ExpectedResult = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 }, TestName = "OneInGroup_GetCostSum_ShouldListAllCosts")]
         [TestCase(11, "Cost", ExpectedResult = new[] { 66 }, TestName = "ElevenInGroup_GetCostSum_ShouldHaveOneSumOfCosts")]
         [TestCase(12, "Cost", ExpectedResult = new[] { 66 }, TestName = "TwelveInGroup_GetCostSum_ShouldHaveOneSumOfCosts")]
-        [TestCase(0,  "Cost", ExpectedResult = new[] { 0 },  TestName = "ZeroInGroup_GetCostSum_ShouldEqualZero")]
         public int[] GetGroupValueSumTest_ShouldEqual(int amountPerGroup, string columnName)
         {
             //Arrange
@@ -47,9 +46,11 @@ namespace CommodityService.Tests
         }
 
         [TestCase(-1, "Cost", TestName = "NegativeNumberInGroup_GetCostSum_ShouldThrowArgumentException")]
+        [TestCase(0, "Cost", TestName = "ZeroInGroup_GetCostSum_ShouldThrowArgumentException")]
         [TestCase(3, "WrongData", TestName = "PositiveNumberInGroup_GetWrongDataSum_ShouldThrowArgumentException")]
         [TestCase(3, null, TestName = "PositiveNumberInGroup_GetNullSum_ShouldThrowArgumentException")]
         [TestCase(3, "", TestName = "PositiveNumberInGroup_GetEmptySum_ShouldThrowArgumentException")]
+        [TestCase(0, "WrongData", TestName = "ZeroInGroup_GetWrongDataSum_ShouldThrowArgumentException")]
         public void GetGroupValueSumTest_ShouldThrowException(int amountPerGroup, string columnName)
         {
             //Arrange

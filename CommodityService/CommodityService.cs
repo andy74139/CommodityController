@@ -23,9 +23,6 @@ namespace CommodityService
 
         private IEnumerable<int> GroupValueSumsWithValidArguments(int amountPerGroup, string dataName)
         {
-            if (amountPerGroup == 0)
-                return new[] {0};
-
             var fieldInfo = typeof(Commodity).GetField(dataName);
             var result = new List<int>();
             for (var startIndex = 0; startIndex < _Commodities.Count; startIndex += amountPerGroup)
@@ -51,8 +48,8 @@ namespace CommodityService
             var fieldInfo = typeof(Commodity).GetField(dataName);
             if (fieldInfo == null)
                 throw new ArgumentException(string.Format("Invalid dataName, cannot find specified dataName '{0}'.", dataName));
-            if (amountPerGroup < 0)
-                throw new ArgumentException("Invalid amountPerGroup, it must be a non-negative integer.");
+            if (amountPerGroup <= 0)
+                throw new ArgumentException("Invalid amountPerGroup, it must be a positive integer.");
         }
     }
 }
