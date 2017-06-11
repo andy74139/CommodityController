@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Assert = NUnit.Framework.Assert;
 
-namespace CommodityController.Tests
+namespace CommodityService.Tests
 {
     [TestFixture]
-    public class CommodityControllerTests
+    public class CommodityServiceTests
     {
         private readonly List<Commodity> _TestCommodities = new List<Commodity>()
         {
@@ -36,13 +37,13 @@ namespace CommodityController.Tests
         public int[] GetGroupValueSumTest_ShouldEqual(int amountPerGroup, string columnName)
         {
             //Arrange
-            var target = new CommodityController(_TestCommodities);
+            var target = new CommodityService(_TestCommodities);
 
             //Act
-            var actual = target.GetGroupValueSum(amountPerGroup, columnName);
+            var actual = target.GroupValueSums(amountPerGroup, columnName);
 
             //Assert
-            return actual;
+            return actual.ToArray();
         }
 
         [TestCase(-1, "Cost", TestName = "NegativeNumberInGroup_GetCostSum_ShouldThrowArgumentException")]
@@ -50,10 +51,10 @@ namespace CommodityController.Tests
         public void GetGroupValueSumTest_ShouldThrowException(int amountPerGroup, string columnName)
         {
             //Arrange
-            var target = new CommodityController(_TestCommodities);
+            var target = new CommodityService(_TestCommodities);
 
             //Act & Assert
-            TestDelegate action = () => target.GetGroupValueSum(amountPerGroup, columnName);
+            TestDelegate action = () => target.GroupValueSums(amountPerGroup, columnName);
             Assert.Throws<ArgumentException>(action);
         }
     }

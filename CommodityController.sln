@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommodityController", "CommodityController\CommodityController.csproj", "{22552A0E-2B93-462F-9841-59EEEBB54CCA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommodityService", "CommodityController\CommodityService.csproj", "{22552A0E-2B93-462F-9841-59EEEBB54CCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommodityControllerTests", "CommodityControllerTests\CommodityControllerTests.csproj", "{782E2076-646E-4574-87B7-663329955BF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{22552A0E-2B93-462F-9841-59EEEBB54CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22552A0E-2B93-462F-9841-59EEEBB54CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22552A0E-2B93-462F-9841-59EEEBB54CCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{782E2076-646E-4574-87B7-663329955BF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{782E2076-646E-4574-87B7-663329955BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{782E2076-646E-4574-87B7-663329955BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{782E2076-646E-4574-87B7-663329955BF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

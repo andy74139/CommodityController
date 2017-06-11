@@ -1,4 +1,4 @@
-﻿namespace CommodityController
+﻿namespace CommodityService
 {
     public class Commodity
     {

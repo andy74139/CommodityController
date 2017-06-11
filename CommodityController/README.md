@@ -1,3 +1,3 @@
-﻿## CommodityController
+﻿## CommodityService
 
-Controller of commodity which supplies API to get sum of data.
+Service of commodity which supplies to get sum of data in commodities.
