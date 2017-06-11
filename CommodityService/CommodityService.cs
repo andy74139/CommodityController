@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace CommodityService
@@ -8,14 +9,9 @@ namespace CommodityService
     {
         private readonly List<Commodity> _Commodities;
 
-        public CommodityService()
+        public CommodityService(IEnumerable<Commodity> commodities)
         {
-            _Commodities = new List<Commodity>();
-        }
-
-        public CommodityService(List<Commodity> commodities)
-        {
-            _Commodities = commodities;
+            _Commodities = commodities.ToList();
         }
 
         public IEnumerable<int> GroupValueSums(int amountPerGroup, string dataName)

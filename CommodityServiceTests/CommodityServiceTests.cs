@@ -49,6 +49,7 @@ namespace CommodityService.Tests
         [TestCase(-1, "Cost", TestName = "NegativeNumberInGroup_GetCostSum_ShouldThrowArgumentException")]
         [TestCase(3, "WrongData", TestName = "PositiveNumberInGroup_GetWrongDataSum_ShouldThrowArgumentException")]
         [TestCase(3, null, TestName = "PositiveNumberInGroup_GetNullSum_ShouldThrowArgumentException")]
+        [TestCase(3, "", TestName = "PositiveNumberInGroup_GetEmptySum_ShouldThrowArgumentException")]
         public void GetGroupValueSumTest_ShouldThrowException(int amountPerGroup, string columnName)
         {
             //Arrange
