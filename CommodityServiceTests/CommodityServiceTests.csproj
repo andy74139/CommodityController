@@ -57,7 +57,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommodityController\CommodityService.csproj">
+    <ProjectReference Include="..\CommodityService\CommodityService.csproj">
       <Project>{22552A0E-2B93-462F-9841-59EEEBB54CCA}</Project>
       <Name>CommodityService</Name>
     </ProjectReference>
