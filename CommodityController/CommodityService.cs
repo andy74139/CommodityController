@@ -20,38 +20,43 @@ namespace CommodityService
 
         public IEnumerable<int> GroupValueSums(int amountPerGroup, string dataName)
         {
-            var fieldInfo = typeof(Commodity).GetField(dataName);
-            ThrowIfArgumentInvaild(amountPerGroup, fieldInfo);
+            ThrowIfArgumentInvaild(amountPerGroup, dataName);
 
-            return GroupValueSums(amountPerGroup, fieldInfo);
+            return GroupValueSumsWithValidArguments(amountPerGroup, dataName);
         }
 
-        private IEnumerable<int> GroupValueSums(int amountPerGroup, FieldInfo fieldInfo)
+        private IEnumerable<int> GroupValueSumsWithValidArguments(int amountPerGroup, string dataName)
         {
             if (amountPerGroup == 0)
                 return new[] {0};
 
+            var fieldInfo = typeof(Commodity).GetField(dataName);
             var result = new List<int>();
             for (var startIndex = 0; startIndex < _Commodities.Count; startIndex += amountPerGroup)
-                result.Add(GetSum(amountPerGroup, fieldInfo, startIndex));
+                result.Add(GetGroupValueSum(amountPerGroup, fieldInfo, startIndex));
+
             return result;
         }
 
-        private int GetSum(int amountPerGroup, FieldInfo fieldInfo, int startIndex)
+        private int GetGroupValueSum(int amountPerGroup, FieldInfo fieldInfo, int startIndex)
         {
             var sum = 0;
-            var sumAmount = Math.Min(amountPerGroup, _Commodities.Count - startIndex);
-            for (var i = 0; i < sumAmount; i++)
+            var commodityAmount = Math.Min(amountPerGroup, _Commodities.Count - startIndex);
+            for (var i = 0; i < commodityAmount; i++)
                 sum += (int) fieldInfo.GetValue(_Commodities[startIndex + i]);
             return sum;
         }
 
-        private static void ThrowIfArgumentInvaild(int amountPerGroup, FieldInfo fieldInfo)
+        private void ThrowIfArgumentInvaild(int amountPerGroup, string dataName)
         {
+            if (dataName == null)
+                throw new ArgumentException("Invalid dataName, dataName cannot be null.");
+
+            var fieldInfo = typeof(Commodity).GetField(dataName);
             if (fieldInfo == null)
-                throw new ArgumentException();
+                throw new ArgumentException(string.Format("Invalid dataName, cannot find specified dataName '{0}'.", dataName));
             if (amountPerGroup < 0)
-                throw new ArgumentException();
+                throw new ArgumentException("Invalid amountPerGroup, it must be a non-negative integer.");
         }
     }
 }

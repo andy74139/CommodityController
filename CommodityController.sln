@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommodityService", "CommodityController\CommodityService.csproj", "{22552A0E-2B93-462F-9841-59EEEBB54CCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommodityControllerTests", "CommodityControllerTests\CommodityControllerTests.csproj", "{782E2076-646E-4574-87B7-663329955BF8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommodityServiceTests", "CommodityControllerTests\CommodityServiceTests.csproj", "{782E2076-646E-4574-87B7-663329955BF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
