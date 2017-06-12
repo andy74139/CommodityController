@@ -32,10 +32,10 @@ Get group sums of data by passing products to the object when constructing it fi
 >         };
 > 
 > var target = new GroupSums(_TestProducts);
-> var sums1 = target.Get(1, "Cost"   ); // int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 }
-> var sums2 = target.Get(11, "Cost"   ); // int[] { 66 }
-> var sums3 = target.Get(3, "Cost"   ); // int[] { 6, 15, 24, 21 }
-> var sums4 = target.Get(4, "Revenue"); // int[] { 50, 66, 60 }
+> var sums1 = target.Get(1, "Cost"   ); // IEnumerable<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 }
+> var sums2 = target.Get(11, "Cost"   ); // IEnumerable<int> { 66 }
+> var sums3 = target.Get(3, "Cost"   ); // IEnumerable<int> { 6, 15, 24, 21 }
+> var sums4 = target.Get(4, "Revenue"); // IEnumerable<int> { 50, 66, 60 }
 
 ## Constructor
 > GroupSums(IEnumerable\<Product>)
@@ -43,7 +43,7 @@ Get group sums of data by passing products to the object when constructing it fi
 Construct GroupsSums by passing the products.
 
 ## Method
-> Get(int, string)
+> IEnumerable<int> Get(int, string)
 
 Get groups sums according to amount per group and specified data name to sum.
 
