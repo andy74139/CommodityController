@@ -36,7 +36,7 @@ namespace GroupSums.Tests
         public int[] GetGroupValueSumTest_ShouldEqual(int amountPerGroup, string dataName)
         {
             //Arrange
-            var target = new GroupSums(_TestProducts);
+            var target = new GroupSums<Product>(_TestProducts);
 
             //Act
             var actual = target.Get(amountPerGroup, dataName);
@@ -54,7 +54,7 @@ namespace GroupSums.Tests
         public void GetGroupValueSumTest_ShouldThrowException(int amountPerGroup, string dataName)
         {
             //Arrange
-            var target = new GroupSums(_TestProducts);
+            var target = new GroupSums<Product>(_TestProducts);
 
             //Act & Assert
             TestDelegate action = () => target.Get(amountPerGroup, dataName);

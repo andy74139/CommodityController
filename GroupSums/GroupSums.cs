@@ -5,11 +5,11 @@ using System.Reflection;
 
 namespace GroupSums
 {
-    public class GroupSums
+    public class GroupSums<P>
     {
-        private readonly List<Product> _Products;
+        private readonly List<P> _Products;
 
-        public GroupSums(IEnumerable<Product> products)
+        public GroupSums(IEnumerable<P> products)
         {
             _Products = products.ToList();
         }
