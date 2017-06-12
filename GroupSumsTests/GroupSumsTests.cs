@@ -33,13 +33,13 @@ namespace GroupSums.Tests
         [TestCase(1,  "Cost", ExpectedResult = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 }, TestName = "OneInGroup_GetCostSum_ShouldListAllCosts")]
         [TestCase(11, "Cost", ExpectedResult = new[] { 66 }, TestName = "ElevenInGroup_GetCostSum_ShouldHaveOneSumOfCosts")]
         [TestCase(12, "Cost", ExpectedResult = new[] { 66 }, TestName = "TwelveInGroup_GetCostSum_ShouldHaveOneSumOfCosts")]
-        public int[] GetGroupValueSumTest_ShouldEqual(int amountPerGroup, string columnName)
+        public int[] GetGroupValueSumTest_ShouldEqual(int amountPerGroup, string dataName)
         {
             //Arrange
             var target = new GroupSums(_TestProducts);
 
             //Act
-            var actual = target.Get(amountPerGroup, columnName);
+            var actual = target.Get(amountPerGroup, dataName);
 
             //Assert
             return actual.ToArray();
@@ -51,13 +51,13 @@ namespace GroupSums.Tests
         [TestCase(3, null, TestName = "PositiveNumberInGroup_GetNullSum_ShouldThrowArgumentException")]
         [TestCase(3, "", TestName = "PositiveNumberInGroup_GetEmptySum_ShouldThrowArgumentException")]
         [TestCase(0, "WrongData", TestName = "ZeroInGroup_GetWrongDataSum_ShouldThrowArgumentException")]
-        public void GetGroupValueSumTest_ShouldThrowException(int amountPerGroup, string columnName)
+        public void GetGroupValueSumTest_ShouldThrowException(int amountPerGroup, string dataName)
         {
             //Arrange
             var target = new GroupSums(_TestProducts);
 
             //Act & Assert
-            TestDelegate action = () => target.Get(amountPerGroup, columnName);
+            TestDelegate action = () => target.Get(amountPerGroup, dataName);
             Assert.Throws<ArgumentException>(action);
         }
     }
