@@ -6,8 +6,8 @@
     <ProjectGuid>{782E2076-646E-4574-87B7-663329955BF8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CommodityServiceTests</RootNamespace>
-    <AssemblyName>CommodityServiceTests</AssemblyName>
+    <RootNamespace>GroupSums.Tests</RootNamespace>
+    <AssemblyName>GroupSumsTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -53,13 +53,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CommodityServiceTests.cs" />
+    <Compile Include="GroupSumsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommodityService\CommodityService.csproj">
+    <ProjectReference Include="..\GroupSums\GroupSums.csproj">
       <Project>{22552A0E-2B93-462F-9841-59EEEBB54CCA}</Project>
-      <Name>CommodityService</Name>
+      <Name>GroupSums</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

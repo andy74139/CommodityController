@@ -7,8 +7,8 @@
     <ProjectGuid>{22552A0E-2B93-462F-9841-59EEEBB54CCA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CommodityService</RootNamespace>
-    <AssemblyName>CommodityService</AssemblyName>
+    <RootNamespace>GroupSums</RootNamespace>
+    <AssemblyName>GroupSums</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,8 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commodity.cs" />
-    <Compile Include="CommodityService.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="GroupSums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
