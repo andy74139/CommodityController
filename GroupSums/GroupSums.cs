@@ -5,37 +5,34 @@ using System.Reflection;
 
 namespace GroupSums
 {
-    public class GroupSums<P>
+    public class GroupSums<T>
     {
-        private readonly List<P> _Products;
+        private readonly IEnumerable<T> _Products;
 
-        public GroupSums(IEnumerable<P> products)
+        public GroupSums(IEnumerable<T> products)
         {
-            _Products = products.ToList();
+            _Products = products;
         }
 
-        public IEnumerable<int> Get(int amountPerGroup, string dataName)
+        public IEnumerable<int> Get(int groupSize, string dataName)
         {
-            ThrowIfArgumentInvaild(amountPerGroup, dataName);
+            ThrowIfArgumentInvaild(groupSize, dataName);
 
-            return GroupSumsWithValidArguments(amountPerGroup, dataName);
+            return GroupSumsWithValidArguments(groupSize, dataName);
         }
 
-        private IEnumerable<int> GroupSumsWithValidArguments(int amountPerGroup, string dataName)
+        private IEnumerable<int> GroupSumsWithValidArguments(int groupSize, string columnName)
         {
-            var propertyInfo = typeof(Product).GetProperty(dataName);
-            var result = new List<int>();
-            for (var startIndex = 0; startIndex < _Products.Count; startIndex += amountPerGroup)
-                result.Add(GroupSum(amountPerGroup, propertyInfo, startIndex));
-
-            return result;
+            var propertyInfo = typeof(T).GetProperty(columnName);
+            for (var startIndex = 0; startIndex < _Products.Count(); startIndex += groupSize)
+                yield return GroupSum(groupSize, propertyInfo, startIndex);
         }
 
-        private int GroupSum(int amountPerGroup, PropertyInfo propertyInfo, int startIndex)
+        private int GroupSum(int groupSize, PropertyInfo propertyInfo, int startIndex)
         {
             var sum = 0;
-            for (var i = 0; i < Math.Min(amountPerGroup, _Products.Count - startIndex); i++)
-                sum += (int) propertyInfo.GetValue(_Products[startIndex + i]);
+            for (var i = 0; i < Math.Min(groupSize, _Products.Count() - startIndex); i++)
+                sum += (int)propertyInfo.GetValue(_Products.ElementAt(startIndex + i));
             return sum;
         }
 
@@ -44,7 +41,7 @@ namespace GroupSums
             if (dataName == null)
                 throw new ArgumentException("Invalid dataName, dataName cannot be null.");
 
-            var propertyInfo = typeof(Product).GetProperty(dataName);
+            var propertyInfo = typeof(T).GetProperty(dataName);
             if (propertyInfo == null)
                 throw new ArgumentException(string.Format("Invalid dataName, cannot find specified dataName '{0}'.", dataName));
             if (amountPerGroup <= 0)
