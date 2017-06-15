@@ -30,13 +30,12 @@ namespace GroupSums
 
         private int GroupSum(int groupSize, PropertyInfo propertyInfo, int startIndex)
         {
-            var sum = 0;
-            for (var i = 0; i < Math.Min(groupSize, _Products.Count() - startIndex); i++)
-                sum += (int)propertyInfo.GetValue(_Products.ElementAt(startIndex + i));
-            return sum;
+            var thisGroupSize = Math.Min(groupSize, _Products.Count() - startIndex);
+            var thisGroup = _Products.Skip(startIndex).Take(thisGroupSize);
+            return thisGroup.Select(p => (int) propertyInfo.GetValue(p)).Sum();
         }
 
-        private void ThrowIfArgumentInvaild(int amountPerGroup, string dataName)
+        private void ThrowIfArgumentInvaild(int groupSize, string dataName)
         {
             if (dataName == null)
                 throw new ArgumentException("Invalid dataName, dataName cannot be null.");
@@ -44,7 +43,7 @@ namespace GroupSums
             var propertyInfo = typeof(T).GetProperty(dataName);
             if (propertyInfo == null)
                 throw new ArgumentException(string.Format("Invalid dataName, cannot find specified dataName '{0}'.", dataName));
-            if (amountPerGroup <= 0)
+            if (groupSize <= 0)
                 throw new ArgumentException("Invalid amountPerGroup, it must be a positive integer.");
         }
     }
